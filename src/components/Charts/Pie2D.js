@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
 import ReactFC from 'react-fusioncharts';
@@ -8,29 +8,12 @@ import FusionCharts from 'fusioncharts';
 import Chart from 'fusioncharts/fusioncharts.charts';
 
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
-import { GithubContext } from '../../context/context';
+
 
 ReactFC.fcRoot(FusionCharts, Chart, FusionTheme);
 
-function Pie2D() {
-  let { repos } = useContext(GithubContext);
+function Pie2D({data}) {
 
-  // get languages
-  let languages = repos.reduce((total, repo) => {
-    let {language} = repo
-      if(!language) return total
-
-      if (total[language]) {
-        total[language].value ++;
-      } else {
-        total[language] = {label: language, value : 1};
-      }
-
-    return total;
-  }, {});
-
-  let data = Object.values(languages)
-  data = data.sort((a,b)=> b.value - a.value)
 
   const chartConfigs = {
     type: 'pie2D',

@@ -3,10 +3,28 @@ import styled from 'styled-components';
 import { GithubContext } from '../context/context';
 import { ExampleChart, Pie2D, Column3D, Bar3D, Doughnut2D } from './Charts';
 const Repos = () => {
+  let { repos } = React.useContext(GithubContext);
+  // get languages
+  let languages = repos.reduce((total, repo) => {
+    let {language} = repo
+      if(!language) return total
+
+      if (total[language]) {
+        total[language].value ++;
+      } else {
+        total[language] = {label: language, value : 1};
+      }
+
+    return total;
+  }, {});
+
+  let data = Object.values(languages)
+  data = data.sort((a,b)=> b.value - a.value)
+
   return (
     <section className='section'>
       <Wrapper className='section-center'>
-        <Pie2D />
+        <Pie2D data={data}/>
         <Column3D />
         <Doughnut2D />
         <Bar3D />
