@@ -17,13 +17,15 @@ function Pie2D() {
 
   // get languages
   let languages = repos.reduce((total, repo) => {
-    if (repo.language) {
-      if (total[repo.language]) {
-        total[repo.language].value ++;
+    let {language} = repo
+      if(!language) return total
+
+      if (total[language]) {
+        total[language].value ++;
       } else {
-        total[repo.language] = {label: repo.language, value : 1};
+        total[language] = {label: language, value : 1};
       }
-    }
+
     return total;
   }, {});
 
