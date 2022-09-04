@@ -1,32 +1,38 @@
 import React from 'react';
 import styled from 'styled-components';
 import { GithubContext } from '../context/context';
-import { ExampleChart, Pie2D, Column3D, Bar3D, Doughnut2D } from './Charts';
+import { Pie2D, Column3D, Bar3D, Doughnut2D } from './Charts';
 const Repos = () => {
   let { repos } = React.useContext(GithubContext);
-  // get languages
-  let languages = repos.reduce((total, repo) => {
-    let {language} = repo
-      if(!language) return total
 
-      if (total[language]) {
-        total[language].value ++;
-      } else {
-        total[language] = {label: language, value : 1};
-      }
+  // compute repos number for each language
+  // and stars for each language
+  let reposData = repos.reduce((total, repo) => {
+    let { language, stargazers_count: stars } = repo;
+    if (!language) return total;
+
+    if (total[language]) {
+      total[language].value++;
+      total[language].stars+= stars;
+    } else {
+      total[language] = { label: language, value: 1, stars };
+    }
 
     return total;
   }, {});
 
-  let data = Object.values(languages)
-  data = data.sort((a,b)=> b.value - a.value)
-
+  let languages = Object.values(reposData);
+  // get array of data for charts
+  let mostUsedLanguages = languages.sort((a, b) => b.value - a.value);
+  let stars = languages.map(({ label, stars }) => {
+    return { label, value: stars };
+  });
   return (
-    <section className='section'>
-      <Wrapper className='section-center'>
-        <Pie2D data={data}/>
+    <section className="section">
+      <Wrapper className="section-center">
+        <Pie2D data={mostUsedLanguages} />
         <Column3D />
-        <Doughnut2D />
+        <Doughnut2D data={stars}/>
         <Bar3D />
       </Wrapper>
     </section>
