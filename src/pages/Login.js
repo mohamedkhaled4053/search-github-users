@@ -3,8 +3,18 @@ import { useAuth0 } from '@auth0/auth0-react';
 import styled from 'styled-components';
 import loginImg from '../images/login-img.svg';
 const Login = () => {
-  return <h2>login page</h2>;
+  return (
+    <Wrapper>
+      <div class="container">
+        <img src="/static/media/login-img.20a90984.svg" alt="github user" />
+        <h1>github user</h1>
+        <button class="btn">Log In / Sign Up</button>
+      </div>
+    </Wrapper>
+  );
 };
+
+
 const Wrapper = styled.section`
   min-height: 100vh;
   display: grid;
