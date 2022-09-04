@@ -1,62 +1,68 @@
-// STEP 1 - Include Dependencies
-// Include react
-import React from "react";
-import ReactDOM from "react-dom";
+import React, { useContext } from 'react';
+import ReactDOM from 'react-dom';
 
-// Include the react-fusioncharts component
-import ReactFC from "react-fusioncharts";
+import ReactFC from 'react-fusioncharts';
 
-// Include the fusioncharts library
-import FusionCharts from "fusioncharts";
+import FusionCharts from 'fusioncharts';
 
-// Include the chart type
-import Chart from "fusioncharts/fusioncharts.charts";
+import Chart from 'fusioncharts/fusioncharts.charts';
 
-// Include the theme as fusion
-import FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
+import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import { GithubContext } from '../../context/context';
 
-// Adding the chart and theme as dependency to the core fusioncharts
 ReactFC.fcRoot(FusionCharts, Chart, FusionTheme);
 
-// STEP 2 - Chart Data
-const chartData = [
-  {
-    label: "Venezuela",
-    value: "290"
-  },
-  {
-    label: "Saudi",
-    value: "260"
-  },
-  {
-    label: "Canada",
-    value: "180"
-  }
-
-];
-
-// STEP 3 - Creating the JSON object to store the chart configurations
-const chartConfigs = {
-  type: "pie3D", // The chart type
-  width: "100%", // Width of the chart
-  height: "400", // Height of the chart
-  dataFormat: "json", // Data type
-  dataSource: {
-    // Chart Configuration
-    chart: {
-      caption: 'languages',
-      theme: 'fusion',
-      decimals: '0',
-      pieRadius: '45%',
-    },
-    // Chart Data
-    data: chartData
-  }
-};
-
-// STEP 4 - Creating the DOM element to pass the react-fusioncharts component
 function Pie3D() {
-  return <ReactFC {...chartConfigs}/>
+  let { repos } = useContext(GithubContext);
+
+  // get languages
+  let languages = repos.reduce((total, repo) => {
+    if (repo.language) {
+      if (total[repo.language]) {
+        total[repo.language].value ++;
+      } else {
+        total[repo.language] = {label: repo.language, value : 1};
+      }
+    }
+    return total;
+  }, {});
+
+  let data = Object.values(languages)
+  data = data.sort((a,b)=> b.value - a.value)
+
+  const chartData = [
+    {
+      label: 'Venezuela',
+      value: '290',
+    },
+    {
+      label: 'Saudi',
+      value: '260',
+    },
+    {
+      label: 'Canada',
+      value: '180',
+    },
+  ];
+
+  const chartConfigs = {
+    type: 'pie3D',
+    width: '100%',
+    height: '400',
+    dataFormat: 'json',
+    dataSource: {
+      chart: {
+        caption: 'languages',
+        theme: 'fusion',
+        decimals: '0',
+        pieRadius: '45%',
+      },
+
+      data,
+    },
+  };
+
+  return <ReactFC {...chartConfigs} />;
 }
 
 export default Pie3D;
