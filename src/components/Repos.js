@@ -4,8 +4,8 @@ import { GithubContext } from '../context/context';
 import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts';
 const Repos = () => {
   return (
-    <section>
-      <Wrapper>
+    <section className='section'>
+      <Wrapper className='section-center'>
         <Pie3D />
         <Column3D />
         <Doughnut2D />
