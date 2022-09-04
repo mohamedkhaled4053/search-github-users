@@ -5,8 +5,7 @@ import { Pie2D, Column3D, Bar3D, Doughnut2D } from './Charts';
 const Repos = () => {
   let { repos } = React.useContext(GithubContext);
 
-  // compute repos number for each language
-  // and stars for each language
+  // compute repos number and stars for each language
   let reposData = repos.reduce((total, repo) => {
     let { language, stargazers_count: stars } = repo;
     if (!language) return total;
@@ -27,11 +26,22 @@ const Repos = () => {
   let stars = languages.map(({ label, stars }) => {
     return { label, value: stars };
   });
+
+
+  // compute most popular repo
+
+  let popularRepos = repos.map(({name ,stargazers_count: stars}) => {
+    return {label: name, value: stars}
+  })
+
+  let mostPopularRepos = popularRepos.sort((a,b)=> b.value- a.value).slice(0,5)
+
+
   return (
     <section className="section">
       <Wrapper className="section-center">
         <Pie2D data={mostUsedLanguages} />
-        <Column3D />
+        <Column3D data={mostPopularRepos}/>
         <Doughnut2D data={stars}/>
         <Bar3D />
       </Wrapper>
