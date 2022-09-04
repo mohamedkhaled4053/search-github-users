@@ -12,7 +12,7 @@ import { GithubContext } from '../../context/context';
 
 ReactFC.fcRoot(FusionCharts, Chart, FusionTheme);
 
-function Pie3D() {
+function Pie2D() {
   let { repos } = useContext(GithubContext);
 
   // get languages
@@ -30,23 +30,8 @@ function Pie3D() {
   let data = Object.values(languages)
   data = data.sort((a,b)=> b.value - a.value)
 
-  const chartData = [
-    {
-      label: 'Venezuela',
-      value: '290',
-    },
-    {
-      label: 'Saudi',
-      value: '260',
-    },
-    {
-      label: 'Canada',
-      value: '180',
-    },
-  ];
-
   const chartConfigs = {
-    type: 'pie3D',
+    type: 'pie2D',
     width: '100%',
     height: '400',
     dataFormat: 'json',
@@ -65,4 +50,4 @@ function Pie3D() {
   return <ReactFC {...chartConfigs} />;
 }
 
-export default Pie3D;
+export default Pie2D;
