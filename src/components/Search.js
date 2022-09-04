@@ -9,7 +9,7 @@ const Search = () => {
         <form>
           <div className="form-control">
             <MdSearch />
-            <input type="text" placeholder="enter github user" value="" />
+            <input type="text" placeholder="enter github user" />
             <button type="submit">search</button>
           </div>
         </form>
