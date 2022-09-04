@@ -8,7 +8,9 @@ import { Auth0Provider } from '@auth0/auth0-react';
 
 ReactDOM.render(
   <>
-    <App />
+    <GithubProvider>
+        <App />
+    </GithubProvider>
   </>,
   document.getElementById('root')
 );
