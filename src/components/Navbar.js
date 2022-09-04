@@ -3,7 +3,18 @@ import styled from 'styled-components';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const Navbar = () => {
-  return <h2>navbar component</h2>;
+  return (
+    <Wrapper>
+      <img
+        src="https://lh3.googleusercontent.com/a/AItbvmk8KwvMOk2X1uq1aTUopSFkHfWG97kpRdDOMvhJ=s96-c"
+        alt="محمد خالد"
+      />
+      <h4>
+        Welcome, <strong>محمد خالد</strong>
+      </h4>
+      <button>logout</button>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.nav`

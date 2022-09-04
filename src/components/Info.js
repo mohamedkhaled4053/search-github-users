@@ -5,7 +5,22 @@ import { GoRepo, GoGist } from 'react-icons/go';
 import { FiUsers, FiUserPlus } from 'react-icons/fi';
 
 const UserInfo = () => {
-  return <h2>user info component</h2>;
+  return (
+    <section className="section">
+      <Wrapper className='section-center'>
+        <article className="item">
+          <span className="pink">
+            <GoRepo />
+          </span>
+          <div>
+            <h3>226</h3>
+            <p>repos</p>
+          </div>
+        </article>
+
+      </Wrapper>
+    </section>
+  );
 };
 
 const Wrapper = styled.section`

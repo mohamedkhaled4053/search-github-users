@@ -3,7 +3,34 @@ import { GithubContext } from '../context/context';
 import styled from 'styled-components';
 
 const Followers = () => {
-  return <h2>followers component</h2>;
+  return (
+    <Wrapper>
+      <div className="followers">
+        <article>
+          <img
+            src="https://avatars.githubusercontent.com/u/3006?v=4"
+            alt="tarasis"
+          />
+          <div>
+            <h4>tarasis</h4>
+            <a href="https://github.com/tarasis">https://github.com/tarasis</a>
+          </div>
+        </article>
+        <article>
+          <img
+            src="https://avatars.githubusercontent.com/u/12502?v=4"
+            alt="benackles"
+          />
+          <div>
+            <h4>benackles</h4>
+            <a href="https://github.com/benackles">
+              https://github.com/benackles
+            </a>
+          </div>
+        </article>
+      </div>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.article`

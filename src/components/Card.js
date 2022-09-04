@@ -1,9 +1,38 @@
 import React from 'react';
 import { GithubContext } from '../context/context';
 import styled from 'styled-components';
-import { MdBusiness, MdLocationOn, MdLink } from 'react-icons/md';
+import { MdBusiness, MdLocationOn, MdLink, MdAddLocation } from 'react-icons/md';
 const Card = () => {
-  return <h2>card component</h2>;
+  return (
+    <Wrapper>
+      <header>
+        <img
+          src="https://avatars.githubusercontent.com/u/42133389?v=4"
+          alt="John Smilga"
+        />
+        <div>
+          <h4>John Smilga</h4>
+          <p>@john_smilga</p>
+        </div>
+        <a href="https://github.com/john-smilga">follow</a>
+      </header>
+      <p className="bio">Creator of Coding Addict</p>
+      <div className="links">
+        <p>
+          <MdBusiness />
+          Coding Addict
+        </p>
+        <p>
+          <MdLocationOn />
+          Los Angeles
+        </p>
+        <a href="https://www.johnsmilga.com">
+          <MdLink />
+          www.johnsmilga.com
+        </a>
+      </div>
+    </Wrapper>
+  );
 };
 const Wrapper = styled.article`
   background: var(--clr-white);
