@@ -23,9 +23,11 @@ const Repos = () => {
   let languages = Object.values(reposData);
   // get array of data for charts
   let mostUsedLanguages = languages.sort((a, b) => b.value - a.value);
-  let stars = languages.map(({ label, stars }) => {
+  let stars = languages
+  .map(({ label, stars }) => {
     return { label, value: stars };
-  });
+  })
+  .sort((a,b)=> b.value - a.value);
 
 
   // compute most popular repo
