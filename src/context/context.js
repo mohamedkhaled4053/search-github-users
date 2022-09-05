@@ -9,6 +9,7 @@ const rootUrl = 'https://api.github.com';
 let GithubContext = React.createContext();
 
 function GithubProvider({ children }) {
+  // states
   let [user, setUser] = useState(mockUser);
   let [repos, setRepos] = useState(mockRepos);
   let [followers, setFollowers] = useState(mockFollowers);
@@ -17,12 +18,14 @@ function GithubProvider({ children }) {
   let [error, setError] = useState('');
   let [limit, setLimit] = useState({limit : 60, remaining: 0});
 
+  // helper functions
   function millisToMinutesAndSeconds(millis) {
     let minutes = Math.floor(millis / 60000);
     let seconds = ((millis % 60000) / 1000).toFixed(0);
     return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
   }
 
+  // fetch function
   function fetchData() {
     setLoading(true)
     setError('')
@@ -79,6 +82,7 @@ function GithubProvider({ children }) {
     );
   }
 
+  // effects
   useEffect(() => {
     fetchData();
   }, []);
