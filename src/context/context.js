@@ -17,6 +17,12 @@ function GithubProvider({ children }) {
   let [error, setError] = useState('');
   let [limit, setLimit] = useState({limit : 60, remaining: 0});
 
+  function millisToMinutesAndSeconds(millis) {
+    let minutes = Math.floor(millis / 60000);
+    let seconds = ((millis % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+  }
+
   function fetchData() {
     setLoading(true)
     setError('')
@@ -37,18 +43,27 @@ function GithubProvider({ children }) {
     Promise.allSettled([fetchUser, fetchFollowers, fetchRepos, fetchLimit]).then(
       (res) => {
         // get data with destructuring
-        let [{value:user}, {value:followers}, {value:repos}, {value:{rate:{limit, remaining}}}] = res
+        let [{value:user}, {value:followers}, {value:repos}, {value:{rate:{limit, remaining, reset}}}] = res
 
         // consel loading and update limit state
         setLoading(false)
         setLimit({limit, remaining})
 
         // check for request limit
+        let timer
         if (remaining === 0) {
-          setError('Sorry, You Have Exceeded Your Hourly Rate Limit!')
+          let timeToReset = reset* 1000 - Date.now()
+          setError(`Sorry, You Have Exceeded Your Hourly Rate Limit! reset in ${millisToMinutesAndSeconds(timeToReset)}`)
+
+          timer = setInterval(() => {
+            timeToReset = reset*1000 - Date.now()
+            setError(`Sorry, You Have Exceeded Your Hourly Rate Limit! reset in ${millisToMinutesAndSeconds(timeToReset)}`)
+          }, 1000);
           return
+        } else {
+          clearInterval(timer)
         }
-        
+
         // check if userName is valid
         if (user.message) {
           setError('There Is No User With That Username')
