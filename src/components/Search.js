@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { MdSearch } from 'react-icons/md';
 import { GithubContext } from '../context/context';
 const Search = () => {
-  let {userName, setUserName, fetchData} = React.useContext(GithubContext)
+  let {userName, setUserName, fetchData, limit} = React.useContext(GithubContext)
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -20,7 +20,7 @@ const Search = () => {
             <button type="submit">search</button>
           </div>
         </form>
-        <h3>requests : 58 / 60</h3>
+        <h3>requests : {limit.remaining} / {limit.limit}</h3>
       </Wrapper>
     </section>
   );

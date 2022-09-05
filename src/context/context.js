@@ -14,6 +14,7 @@ function GithubProvider({ children }) {
   let [followers, setFollowers] = useState([]);
   let [userName, setUserName] = useState('john-smilga');
   let [loading, setLoading] = useState(true);
+  let [limit, setLimit] = useState({limit : 60, remaining: 0});
 
   function fetchData() {
     setLoading(true)
@@ -22,19 +23,23 @@ function GithubProvider({ children }) {
     let userUrl = `${rootUrl}/users/${userName}`;
     let followersUrl = userUrl + '/followers';
     let reposUrl = userUrl + '/repos?per_page=100';
+    let limitUrl = `${rootUrl}/rate_limit`
 
     // setup fetch
     let fetchUser = fetch(userUrl).then((res) => res.json());
     let fetchFollowers = fetch(followersUrl).then((res) => res.json());
     let fetchRepos = fetch(reposUrl).then((res) => res.json());
+    let fetchLimit = fetch(limitUrl).then((res) => res.json());
 
     setUserName('')
     // display data only when all settled
-    Promise.allSettled([fetchUser, fetchFollowers, fetchRepos]).then(
+    Promise.allSettled([fetchUser, fetchFollowers, fetchRepos, fetchLimit]).then(
       (res) => {
+        console.log(res);
         setUser(res[0].value)
         setFollowers(res[1].value)
         setRepos(res[2].value)
+        setLimit({limit:res[3].value.rate.limit, remaining: res[3].value.rate.remaining})
 
         setLoading(false)
       }
@@ -47,7 +52,7 @@ function GithubProvider({ children }) {
 
   return (
     <GithubContext.Provider
-      value={{ user, repos, followers, userName, setUserName, loading, fetchData }}
+      value={{ user, repos, followers, userName, setUserName, loading, fetchData ,limit}}
     >
       {children}
     </GithubContext.Provider>
