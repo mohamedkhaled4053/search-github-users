@@ -9,9 +9,9 @@ const rootUrl = 'https://api.github.com';
 let GithubContext = React.createContext();
 
 function GithubProvider({ children }) {
-  let [user, setUser] = useState({});
-  let [repos, setRepos] = useState([]);
-  let [followers, setFollowers] = useState([]);
+  let [user, setUser] = useState(mockUser);
+  let [repos, setRepos] = useState(mockRepos);
+  let [followers, setFollowers] = useState(mockFollowers);
   let [userName, setUserName] = useState('john-smilga');
   let [loading, setLoading] = useState(true);
   let [error, setError] = useState('');
@@ -19,7 +19,7 @@ function GithubProvider({ children }) {
 
   function fetchData() {
     setLoading(true)
-
+    setError('')
     // prepare urls
     let userUrl = `${rootUrl}/users/${userName}`;
     let followersUrl = userUrl + '/followers';
@@ -36,13 +36,30 @@ function GithubProvider({ children }) {
     // display data only when all settled
     Promise.allSettled([fetchUser, fetchFollowers, fetchRepos, fetchLimit]).then(
       (res) => {
+        // get data with destructuring
         let [{value:user}, {value:followers}, {value:repos}, {value:{rate:{limit, remaining}}}] = res
+
+        // consel loading and update limit state
+        setLoading(false)
+        setLimit({limit, remaining})
+
+        // check for request limit
+        if (remaining === 0) {
+          setError('Sorry, You Have Exceeded Your Hourly Rate Limit!')
+          return
+        }
+        
+        // check if userName is valid
+        if (user.message) {
+          setError('There Is No User With That Username')
+          return
+        }
+        
+        // update states
         setUser(user)
         setFollowers(followers)
         setRepos(repos)
-        setLimit({limit, remaining})
 
-        setLoading(false)
       }
     );
   }
