@@ -29,18 +29,19 @@ const Repos = () => {
 
 
   // compute most popular repo
+  let {starsData, forksData} = repos.reduce((total, repo)=>{
+    let {name ,stargazers_count: stars , forks} = repo
+    // prepare star and forks data
+    total.starsData.push({label: name, value :stars})
+    total.forksData.push({label: name, value :forks})
 
-  let popularRepos = repos.map(({name ,stargazers_count: stars , forks}) => {
-    return {label: name, value: stars, forks}
-  })
+    return total
+  },{starsData:[], forksData:[]})
 
-  let mostPopularRepos = popularRepos.sort((a,b)=> b.value- a.value).slice(0,5)
-
-  let mostForkedRepos = popularRepos.map((repo)=> {
-    return {...repo, value: repo.forks}
-  }).sort((a,b)=>b.value - a.value).slice(0,5)
-
-
+  // get top repos in stars and forks
+  let mostPopularRepos = starsData.sort((a,b)=> b.value- a.value).slice(0,5)
+  let mostForkedRepos = forksData.sort((a,b)=>b.value - a.value).slice(0,5)
+  
   return (
     <section className="section">
       <Wrapper className="section-center">
