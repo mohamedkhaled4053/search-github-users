@@ -35,11 +35,11 @@ function GithubProvider({ children }) {
     // display data only when all settled
     Promise.allSettled([fetchUser, fetchFollowers, fetchRepos, fetchLimit]).then(
       (res) => {
-        console.log(res);
-        setUser(res[0].value)
-        setFollowers(res[1].value)
-        setRepos(res[2].value)
-        setLimit({limit:res[3].value.rate.limit, remaining: res[3].value.rate.remaining})
+        let [{value:user}, {value:followers}, {value:repos}, {value:{rate:{limit, remaining}}}] = res
+        setUser(user)
+        setFollowers(followers)
+        setRepos(repos)
+        setLimit({limit, remaining})
 
         setLoading(false)
       }
