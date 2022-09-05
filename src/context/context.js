@@ -14,6 +14,7 @@ function GithubProvider({ children }) {
   let [followers, setFollowers] = useState([]);
   let [userName, setUserName] = useState('john-smilga');
   let [loading, setLoading] = useState(true);
+  let [error, setError] = useState('');
   let [limit, setLimit] = useState({limit : 60, remaining: 0});
 
   function fetchData() {
@@ -52,7 +53,7 @@ function GithubProvider({ children }) {
 
   return (
     <GithubContext.Provider
-      value={{ user, repos, followers, userName, setUserName, loading, fetchData ,limit}}
+      value={{ user, repos, followers, userName, setUserName, loading, fetchData ,limit, error}}
     >
       {children}
     </GithubContext.Provider>
