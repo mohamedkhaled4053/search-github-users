@@ -60,7 +60,12 @@ function GithubProvider({ children }) {
 
           timer = setInterval(() => {
             timeToReset = reset*1000 - Date.now()
-            setError(`Sorry, You Have Exceeded Your Hourly Rate Limit! reset in ${millisToMinutesAndSeconds(timeToReset)}`)
+            if(timeToReset <= 0){
+              fetchData()
+              clearInterval(timer)
+            }else{
+              setError(`Sorry, You Have Exceeded Your Hourly Rate Limit! reset in ${millisToMinutesAndSeconds(timeToReset)}`)
+            }
           }, 1000);
           return
         } else {
