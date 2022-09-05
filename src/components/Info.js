@@ -42,11 +42,9 @@ const UserInfo = () => {
   return (
     <section className="section">
       <Wrapper className="section-center">
-        {items.map(({id,label, value, icon, color}) => (
+        {items.map(({ id, label, value, icon, color }) => (
           <article key={id} className="item">
-            <span className={color}>
-              {icon}
-            </span>
+            <span className={color}>{icon}</span>
             <div>
               <h3>{value}</h3>
               <p>{label}</p>

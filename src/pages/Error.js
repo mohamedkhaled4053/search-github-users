@@ -15,7 +15,6 @@ const Error = () => {
   );
 };
 
-
 const Wrapper = styled.section`
   min-height: 100vh;
   display: grid;

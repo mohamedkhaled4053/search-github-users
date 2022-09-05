@@ -8,12 +8,9 @@ import Chart from 'fusioncharts/fusioncharts.charts';
 
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
-
 ReactFC.fcRoot(FusionCharts, Chart, FusionTheme);
 
-function Pie2D({data}) {
-
-
+function Pie2D({ data }) {
   const chartConfigs = {
     type: 'bar3D',
     width: '100%',
@@ -23,13 +20,13 @@ function Pie2D({data}) {
       chart: {
         caption: 'most forked',
         theme: 'fusion',
-        xAxisName : 'Forks',
-        xAxisNameFontSize : '20',
-        yAxisName : 'Repos',
-        yAxisNameFontSize : '20',
-        showValues:'1',
-        valueFontColor:'#999',
-        valueFontSize:'20'
+        xAxisName: 'Forks',
+        xAxisNameFontSize: '20',
+        yAxisName: 'Repos',
+        yAxisNameFontSize: '20',
+        showValues: '1',
+        valueFontColor: '#999',
+        valueFontSize: '20',
       },
 
       data,

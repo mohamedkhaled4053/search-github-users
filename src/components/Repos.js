@@ -12,7 +12,7 @@ const Repos = () => {
 
     if (total[language]) {
       total[language].value++;
-      total[language].stars+= stars;
+      total[language].stars += stars;
     } else {
       total[language] = { label: language, value: 1, stars };
     }
@@ -24,33 +24,37 @@ const Repos = () => {
   // get array of data for charts
   let mostUsedLanguages = languages.sort((a, b) => b.value - a.value);
   let stars = languages
-  .map(({ label, stars }) => {
-    return { label, value: stars };
-  })
-  .sort((a,b)=> b.value - a.value);
-
+    .map(({ label, stars }) => {
+      return { label, value: stars };
+    })
+    .sort((a, b) => b.value - a.value);
 
   // compute most popular repo
-  let {starsData, forksData} = repos.reduce((total, repo)=>{
-    let {name ,stargazers_count: stars , forks} = repo
-    // prepare star and forks data
-    total.starsData.push({label: name, value :stars})
-    total.forksData.push({label: name, value :forks})
+  let { starsData, forksData } = repos.reduce(
+    (total, repo) => {
+      let { name, stargazers_count: stars, forks } = repo;
+      // prepare star and forks data
+      total.starsData.push({ label: name, value: stars });
+      total.forksData.push({ label: name, value: forks });
 
-    return total
-  },{starsData:[], forksData:[]})
+      return total;
+    },
+    { starsData: [], forksData: [] }
+  );
 
   // get top repos in stars and forks
-  let mostPopularRepos = starsData.sort((a,b)=> b.value- a.value).slice(0,5)
-  let mostForkedRepos = forksData.sort((a,b)=>b.value - a.value).slice(0,5)
-  
+  let mostPopularRepos = starsData
+    .sort((a, b) => b.value - a.value)
+    .slice(0, 5);
+  let mostForkedRepos = forksData.sort((a, b) => b.value - a.value).slice(0, 5);
+
   return (
     <section className="section">
       <Wrapper className="section-center">
         <Pie2D data={mostUsedLanguages} />
-        <Column3D data={mostPopularRepos}/>
-        <Doughnut2D data={stars}/>
-        <Bar3D data={mostForkedRepos}/>
+        <Column3D data={mostPopularRepos} />
+        <Doughnut2D data={stars} />
+        <Bar3D data={mostForkedRepos} />
       </Wrapper>
     </section>
   );

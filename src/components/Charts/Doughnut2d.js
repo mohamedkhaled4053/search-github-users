@@ -8,12 +8,9 @@ import Chart from 'fusioncharts/fusioncharts.charts';
 
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
-
 ReactFC.fcRoot(FusionCharts, Chart, FusionTheme);
 
-function Pie2D({data}) {
-
-
+function Pie2D({ data }) {
   const chartConfigs = {
     type: 'doughnut2d',
     width: '100%',
@@ -25,10 +22,10 @@ function Pie2D({data}) {
         theme: 'fusion',
         decimals: '0',
         pieRadius: '45%',
-        showPercentValues: "0",
+        showPercentValues: '0',
         plottooltext: '$label, $percentValue',
       },
-      
+
       data,
     },
   };

@@ -8,12 +8,9 @@ import Chart from 'fusioncharts/fusioncharts.charts';
 
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 
-
 ReactFC.fcRoot(FusionCharts, Chart, FusionTheme);
 
-function Pie2D({data}) {
-
-
+function Pie2D({ data }) {
   const chartConfigs = {
     type: 'pie2D',
     width: '100%',

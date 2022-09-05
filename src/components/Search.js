@@ -3,24 +3,32 @@ import styled from 'styled-components';
 import { MdSearch } from 'react-icons/md';
 import { GithubContext } from '../context/context';
 const Search = () => {
-  let {userName, setUserName, fetchData, limit} = React.useContext(GithubContext)
+  let { userName, setUserName, fetchData, limit } =
+    React.useContext(GithubContext);
 
   function handleSubmit(e) {
-    e.preventDefault()
-    fetchData()
+    e.preventDefault();
+    fetchData();
   }
 
   return (
     <section className="section">
-      <Wrapper className='section-center'>
+      <Wrapper className="section-center">
         <form onSubmit={handleSubmit}>
           <div className="form-control">
             <MdSearch />
-            <input type="text" placeholder="enter github user" value={userName} onChange={(e)=>setUserName(e.target.value)}/>
+            <input
+              type="text"
+              placeholder="enter github user"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+            />
             <button type="submit">search</button>
           </div>
         </form>
-        <h3>requests : {limit.remaining} / {limit.limit}</h3>
+        <h3>
+          requests : {limit.remaining} / {limit.limit}
+        </h3>
       </Wrapper>
     </section>
   );

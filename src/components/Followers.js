@@ -8,15 +8,12 @@ const Followers = () => {
   return (
     <Wrapper>
       <div className="followers">
-        {followers.map(({id, login, avatar_url, html_url}) => (
+        {followers.map(({ id, login, avatar_url, html_url }) => (
           <article key={id}>
-            <img
-              src={avatar_url}
-              alt={login}
-            />
+            <img src={avatar_url} alt={login} />
             <div>
               <h4>{login}</h4>
-              <a href={html_url} target='_blank'>
+              <a href={html_url} target="_blank">
                 {html_url}
               </a>
             </div>
