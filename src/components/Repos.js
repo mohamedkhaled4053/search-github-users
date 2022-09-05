@@ -30,11 +30,15 @@ const Repos = () => {
 
   // compute most popular repo
 
-  let popularRepos = repos.map(({name ,stargazers_count: stars}) => {
-    return {label: name, value: stars}
+  let popularRepos = repos.map(({name ,stargazers_count: stars , forks}) => {
+    return {label: name, value: stars, forks}
   })
 
   let mostPopularRepos = popularRepos.sort((a,b)=> b.value- a.value).slice(0,5)
+
+  let mostForkedRepos = popularRepos.map((repo)=> {
+    return {...repo, value: repo.forks}
+  }).sort((a,b)=>b.value - a.value).slice(0,5)
 
 
   return (
@@ -43,7 +47,7 @@ const Repos = () => {
         <Pie2D data={mostUsedLanguages} />
         <Column3D data={mostPopularRepos}/>
         <Doughnut2D data={stars}/>
-        <Bar3D />
+        <Bar3D data={mostForkedRepos}/>
       </Wrapper>
     </section>
   );
