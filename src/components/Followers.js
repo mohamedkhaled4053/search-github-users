@@ -3,16 +3,26 @@ import { GithubContext } from '../context/context';
 import styled from 'styled-components';
 
 const Followers = () => {
-  let { followers } = useContext(GithubContext);
+  let { followers,setUserName, fetchData } = useContext(GithubContext);
+
+  function handleClick(e) {
+    if (e.target.nodeName === 'IMG') {
+      setUserName(e.target.alt)
+      fetchData()
+    } else if (e.target.nodeName === 'SPAN'){
+      setUserName(e.target.textContent)
+      fetchData()
+    }
+  }
 
   return (
     <Wrapper>
       <div className="followers">
         {followers.map(({ id, login, avatar_url, html_url }) => (
-          <article key={id}>
+          <article key={id} onClick={handleClick}>
             <img src={avatar_url} alt={login} />
             <div>
-              <h4>{login}</h4>
+              <h4><span>{login}</span></h4>
               <a href={html_url} target="_blank">
                 {html_url}
               </a>
@@ -67,9 +77,13 @@ const Wrapper = styled.article`
       width: 45px;
       border-radius: 50%;
       object-fit: cover;
+      cursor: pointer
     }
     h4 {
       margin-bottom: 0;
+      span{
+        cursor: pointer
+      }
     }
     a {
       color: var(--clr-grey-5);
