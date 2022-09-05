@@ -8,6 +8,7 @@ const Search = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (loading) return
     fetchData();
   }
 
