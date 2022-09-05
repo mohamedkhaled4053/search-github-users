@@ -28,12 +28,14 @@ function GithubProvider({ children }) {
     let fetchFollowers = fetch(followersUrl).then((res) => res.json());
     let fetchRepos = fetch(reposUrl).then((res) => res.json());
 
+    setUserName('')
     // display data only when all settled
     Promise.allSettled([fetchUser, fetchFollowers, fetchRepos]).then(
       (res) => {
         setUser(res[0].value)
         setFollowers(res[1].value)
         setRepos(res[2].value)
+
         setLoading(false)
       }
     );
@@ -45,7 +47,7 @@ function GithubProvider({ children }) {
 
   return (
     <GithubContext.Provider
-      value={{ user, repos, followers, userName, setUserName, loading }}
+      value={{ user, repos, followers, userName, setUserName, loading, fetchData }}
     >
       {children}
     </GithubContext.Provider>
