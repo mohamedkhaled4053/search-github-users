@@ -3,12 +3,14 @@ import { useAuth0 } from '@auth0/auth0-react';
 import styled from 'styled-components';
 import loginImg from '../images/login-img.svg';
 const Login = () => {
+  let {loginWithRedirect} = useAuth0()
+
   return (
     <Wrapper>
       <div class="container">
-        <img src="/static/media/login-img.20a90984.svg" alt="github user" />
+        <img src={loginImg} alt="github user" />
         <h1>github user</h1>
-        <button class="btn">Log In / Sign Up</button>
+        <button class="btn" onClick={loginWithRedirect}>Log In / Sign Up</button>
       </div>
     </Wrapper>
   );
