@@ -1,20 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useAuth0 } from '@auth0/auth0-react';
+import loadingImage from '../images/preloader.gif';
 
 const Navbar = () => {
-  return (
-    <Wrapper>
-      <img
-        src="https://lh3.googleusercontent.com/a/AItbvmk8KwvMOk2X1uq1aTUopSFkHfWG97kpRdDOMvhJ=s96-c"
-        alt="محمد خالد"
-      />
-      <h4>
-        Welcome, <strong>محمد خالد</strong>
-      </h4>
-      <button>logout</button>
-    </Wrapper>
-  );
+  let { isAuthenticated, user, loginWithRedirect, logout } =
+    useAuth0();
+
+  if (isAuthenticated && user) {
+    return (
+      <Wrapper>
+        {user.picture && <img src={user.picture} alt={user.name} />}
+        {user.name && (
+          <h4>
+            Welcome, <strong>{user.name}</strong>
+          </h4>
+        )}
+        <button onClick={() => logout({ returnTo: window.location.origin })}>
+          logout
+        </button>
+      </Wrapper>
+    );
+  } else {
+    return (
+      <Wrapper>
+        <button onClick={loginWithRedirect}>Log in</button>
+      </Wrapper>
+    );
+  }
 };
 
 const Wrapper = styled.nav`
