@@ -1,8 +1,19 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
+import loadingImage from '../images/preloader.gif';
 
-const PrivateRoute = () => {
-  return <h2>private route component</h2>;
+const PrivateRoute = ({ children }) => {
+  let { isLoading, isAuthenticated, error, user } = useAuth0();
+
+  if (isLoading) {
+    return <img src={loadingImage} alt="loading" className="loading-img" />;
+  }
+
+  if (!(isAuthenticated && user)) {
+    return <Navigate to="/login" />;
+  }
+
+  return children;
 };
 export default PrivateRoute;
