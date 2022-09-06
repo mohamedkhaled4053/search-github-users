@@ -5,11 +5,12 @@ import { GithubContext } from '../context/context';
 const Search = () => {
   let { userName, setUserName, fetchData, limit, loading, error } =
     React.useContext(GithubContext);
+  let inputContainer = React.useRef(null)
 
   function handleSubmit(e) {
     e.preventDefault();
     if (loading) return
-    fetchData();
+    setUserName(inputContainer.current.value)
   }
 
   return (
@@ -26,10 +27,9 @@ const Search = () => {
             <input
               type="text"
               placeholder="enter github user"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
+              ref={inputContainer}
             />
-            {!loading && <button type="submit">search</button>}
+            {(!loading && limit.remaining > 0) && <button type="submit">search</button>}
           </div>
         </form>
         <h3>

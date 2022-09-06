@@ -27,6 +27,8 @@ function GithubProvider({ children }) {
 
   // fetch function
   function fetchData() {
+    if(!userName) return
+
     setLoading(true)
     setError('')
     // prepare urls
@@ -90,7 +92,7 @@ function GithubProvider({ children }) {
   // effects
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [userName]);
 
   return (
     <GithubContext.Provider

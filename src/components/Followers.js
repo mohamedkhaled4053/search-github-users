@@ -8,10 +8,8 @@ const Followers = () => {
   function handleClick(e) {
     if (e.target.nodeName === 'IMG') {
       setUserName(e.target.alt)
-      fetchData()
     } else if (e.target.nodeName === 'SPAN'){
       setUserName(e.target.textContent)
-      fetchData()
     }
   }
 
