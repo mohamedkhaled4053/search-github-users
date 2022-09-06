@@ -10,6 +10,10 @@ const PrivateRoute = ({ children }) => {
     return <img src={loadingImage} alt="loading" className="loading-img" />;
   }
 
+  if(error){
+    return <main>opps... {error.message}</main>
+  }
+
   if (!(isAuthenticated && user)) {
     return <Navigate to="/login" />;
   }
