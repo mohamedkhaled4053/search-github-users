@@ -1,115 +1,42 @@
-## Starter Project
+# search github users
 
-- css provided (global styles, styled components)
-- folders/files already setup
-- all imports included (warnings)
-- index.js for easier imports
+## Table of contents
 
-## Styled Components
-
-[Styled-Components - Main Docs](https://styled-components.com/)
-
-```jsx
-import styled from "styled-components";
-
-const ReactComponent = () => {
- // logic here
- return <Wrapper>
- {some content}
- </Wrapper>
-}
+- [Overview](#overview)
+- [Screenshot](#screenshot)
+- [Links](#links)
+- [Built with](#built-with)
+- [Author](#author)
 
 
-const Wrapper = styled.htmlElement`
-write your styles here
-`
-export default ReactComponent
-```
+## Overview
 
-## React Icons
+This is a react project where you can search for a GitHub user by username and see some info and analytics about this user
 
-[React Icons - Main Docs](https://react-icons.github.io/react-icons/)
+In the project, there are authentication and responsive charts 
 
-```jsx
-import { FiUsers, FiUserPlus } from 'react-icons/fi';
-<FiUsers className='nameOfTheClass'> </FiUsers>;
-```
 
-## React Router Dom
+## Links
 
-version used - "react-router-dom": "^5.2.0",
+- Solution URL: [Github repo](https://github.com/john-smilga/react-search-github-users)
+- Live Site URL: [Netlify deployment](https://search-github-users-4053.netlify.app/)
 
-- [react-router-dom - Main Docs](https://reactrouter.com/web/guides/quick-start)
+## Screenshot
 
-- <Switch> renders the first child <Route> that matches
-- A <Route path="*"> always matches
+![](./src/images/preview.png)
 
-## Gihthub API
 
-- [Root Endpoint](https://api.github.com)
-- [Get User](https://api.github.com/users/wesbos)
-- [Repos](https://api.github.com/users/john-smilga/repos?per_page=100)
-- [Followers](https://api.github.com/users/john-smilga/followers)
-- [Rate Limit](https://api.github.com/rate_limit)
+## Built with
 
-  For unauthenticated requests, the rate limit allows for up to 60 requests per hour. Unauthenticated requests are associated with the originating IP address, and not the user making requests.
+- react.js
+- Semantic HTML5 markup
+- CSS custom properties
+- Javascript
+- fusion charts libary
+- Auth0
 
-## Fusion Charts
 
-- [Fusion Charts - Main Docs](https://www.fusioncharts.com/)
-- [First React Chart](https://www.fusioncharts.com/dev/getting-started/react/your-first-chart-using-react)
-- [List Of Charts](https://www.fusioncharts.com/dev/chart-guide/list-of-charts)
-- [Themes](https://www.fusioncharts.com/dev/themes/introduction-to-themes)
+## Author
 
-## Auth0
-
-- [Auth0 - Main Docs](https://auth0.com/)
-
-- Create Application
-- Choose : Single Page Web Applications
-- Choose : React
-- Go to Settings Tab
-- Copy/Paste Domain, ClientID - can be public (or use .env)
-- Add Domain -
-  for now http://localhost:3000 (DON'T COPY PASTE FROM URL BAR)
-
-  - Allowed Callback URLs
-  - Allowed Logout URLs
-  - Allowed Web Origins
-  - SAVE CHANGES!!!!!!!!!!!!!!!
-
-- Connections
-  email,social
-
-- [React SDK Docs](https://auth0.com/docs/libraries/auth0-react)
-- [REACT SDK API Docs](https://auth0.github.io/auth0-react/)
-
-## Deployment
-
-[Netlify](https://www.netlify.com/)
-
-## Additional Info
-
-#### Redirects with react-router-dom
-
-In order for routing to work on netlify, redirects was added to the public folder
-
-- \_redirects file in public
-
-```
-
-/*    /index.html   200
-
-```
-
-[Redirects Blog Post](https://dev.to/dance2die/page-not-found-on-netlify-with-react-router-58mc)
-
-#### Warnings and create-react-app
-
-package.json
-
-```js
-"build": "CI= react-scripts build",
-```
-
-[create-react-app Warning Fix Blog Post](https://community.netlify.com/t/how-to-fix-build-failures-with-create-react-app-in-production/17752)
+- linkedin - [mohamed khaled](https://www.linkedin.com/in/mohamed-khaled-58602722b/)
+- Github - [mohamed khaled](https://github.com/mohamedkhaled4053)
