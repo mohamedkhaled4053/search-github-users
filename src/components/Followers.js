@@ -3,7 +3,7 @@ import { GithubContext } from '../context/context';
 import styled from 'styled-components';
 
 const Followers = () => {
-  let { followers,setUserName, fetchData } = useContext(GithubContext);
+  let { followers,setUserName } = useContext(GithubContext);
 
   function handleClick(e) {
     if (e.target.nodeName === 'IMG') {
@@ -21,7 +21,7 @@ const Followers = () => {
             <img src={avatar_url} alt={login} />
             <div>
               <h4><span>{login}</span></h4>
-              <a href={html_url} target="_blank">
+              <a href={html_url} target="_blank" rel="noreferrer">
                 {html_url}
               </a>
             </div>

@@ -28,7 +28,7 @@ const Repos = () => {
       return { label, value: stars };
     })
     // remove languages that has no stars
-    .filter(({ value }) => value != 0)
+    .filter(({ value }) => value !== 0)
     .sort((a, b) => b.value - a.value);
 
   // compute most popular repo

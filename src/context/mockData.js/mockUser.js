@@ -1,4 +1,4 @@
-export default {
+let mockUser = {
   login: 'john-smilga',
   id: 42133389,
   node_id: 'MDQ6VXNlcjQyMTMzMzg5',
@@ -35,3 +35,5 @@ export default {
   created_at: '2018-08-06T06:48:23Z',
   updated_at: '2022-08-22T15:44:40Z',
 };
+
+export default mockUser

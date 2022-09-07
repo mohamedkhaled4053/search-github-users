@@ -1,4 +1,4 @@
-export default [
+let mockRepos =  [
   {
     id: 467718770,
     node_id: 'R_kgDOG-DScg',
@@ -14025,3 +14025,5 @@ export default [
     default_branch: 'master',
   },
 ];
+
+export default mockRepos

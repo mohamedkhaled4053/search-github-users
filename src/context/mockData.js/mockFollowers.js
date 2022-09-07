@@ -1,4 +1,4 @@
-export default [
+let mockFollowers = [
   {
     login: 'tarasis',
     id: 3006,
@@ -660,3 +660,5 @@ export default [
     site_admin: false,
   },
 ];
+
+export default mockFollowers

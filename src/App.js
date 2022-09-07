@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dashboard, Login, PrivateRoute, AuthWrapper, Error } from './pages';
+import { Dashboard, Login, PrivateRoute, Error } from './pages';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {

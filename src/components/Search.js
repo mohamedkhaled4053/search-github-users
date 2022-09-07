@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { MdSearch } from 'react-icons/md';
 import { GithubContext } from '../context/context';
 const Search = () => {
-  let { userName, setUserName, fetchData, limit, loading, error } =
+  let { setUserName, limit, loading, error } =
     React.useContext(GithubContext);
   let inputContainer = React.useRef(null)
 

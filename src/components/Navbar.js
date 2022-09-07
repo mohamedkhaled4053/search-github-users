@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useAuth0 } from '@auth0/auth0-react';
-import loadingImage from '../images/preloader.gif';
 
 const Navbar = () => {
   let { isAuthenticated, user, loginWithRedirect, logout } =

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { GithubContext } from '../context/context';
 import styled from 'styled-components';
 import { GoRepo, GoGist } from 'react-icons/go';
-import { FiUsers, FiUserPlus, FiUser } from 'react-icons/fi';
+import { FiUsers, FiUserPlus } from 'react-icons/fi';
 
 const UserInfo = () => {
   let { user } = useContext(GithubContext);
@@ -20,7 +20,7 @@ const UserInfo = () => {
       id: 2,
       label: 'followers',
       value: followers,
-      icon: <FiUser className="icon" />,
+      icon: <FiUsers className="icon" />,
       color: 'green',
     },
     {
