@@ -1,5 +1,5 @@
 import React from 'react';
-import { Info, Repos, User, Search, Navbar } from '../components';
+import { Info, Repos, User, Search } from '../components';
 import loadingImage from '../images/preloader.gif';
 import { GithubContext } from '../context/context';
 const Dashboard = () => {
@@ -8,7 +8,6 @@ const Dashboard = () => {
   if (loading) {
     return (
       <main>
-        <Navbar />
         <Search />
         <img src={loadingImage} alt='loading' className='loading-img'/>
       </main>
@@ -17,7 +16,6 @@ const Dashboard = () => {
 
   return (
     <main>
-      <Navbar />
       <Search />
       <Info />
       <User />

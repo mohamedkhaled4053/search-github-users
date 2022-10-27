@@ -11,10 +11,7 @@
 
 ## Overview
 
-This is a react project where you can search for a GitHub user by username and see some info and analytics about this user
-
-In the project, there are authentication and responsive charts 
-
+This is a react project where you can search for a GitHub user by username and see some info and analytics about this user with responsive charts
 
 ## Links
 
@@ -33,7 +30,6 @@ In the project, there are authentication and responsive charts
 - CSS custom properties
 - Javascript
 - fusion charts libary
-- Auth0
 
 
 ## Author
